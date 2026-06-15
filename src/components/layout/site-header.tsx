@@ -24,7 +24,7 @@ export async function SiteHeader() {
           <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-sm">
             <LayoutPanelLeft className="size-5" aria-hidden />
           </span>
-          <span className="hidden min-[375px]:inline">Page Studio</span>
+          <span>Page Studio</span>
         </Link>
 
         <nav aria-label="Primary" className="flex items-center gap-1 sm:gap-2">
@@ -39,7 +39,7 @@ export async function SiteHeader() {
           {user ? (
             <div className="flex items-center gap-2">
               <span className="hidden text-sm text-muted-foreground sm:inline">{user.name}</span>
-              <Badge variant="secondary" className="capitalize">
+              <Badge variant="secondary" className="hidden capitalize min-[375px]:inline-flex">
                 {user.role}
               </Badge>
               <form action={logoutAction}>

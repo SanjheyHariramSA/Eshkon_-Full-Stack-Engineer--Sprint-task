@@ -73,7 +73,7 @@ export function MobileNav() {
         <div
           ref={panelRef}
           id="mobile-nav-panel"
-          className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-lg border bg-popover p-1 text-popover-foreground shadow-lg animate-fade-in"
+          className="absolute right-0 top-full z-50 mt-2 w-40 overflow-hidden rounded-lg border bg-popover p-1 text-popover-foreground shadow-lg animate-fade-in"
         >
           {LINKS.map((link) => (
             <Link
