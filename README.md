@@ -7,6 +7,13 @@ automatically-versioned releases** — with RBAC, accessibility, and CI enforced
 Built with **Next.js (App Router) · TypeScript · Redux Toolkit · Contentful · Tailwind ·
 shadcn/ui · Zod · dnd-kit · Playwright + axe · GitHub Actions**.
 
+**🔗 Live app:** https://eshkon-sanjheyhariramsa.vercel.app/
+
+> Sign in at [`/login`](https://eshkon-sanjheyhariramsa.vercel.app/login) with a demo role
+> (see [Demo logins](#demo-logins-rbac) below), then open
+> [`/preview/home`](https://eshkon-sanjheyhariramsa.vercel.app/preview/home) and
+> [`/studio/home`](https://eshkon-sanjheyhariramsa.vercel.app/studio/home).
+
 ---
 
 ## Quick start

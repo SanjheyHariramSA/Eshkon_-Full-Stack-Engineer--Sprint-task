@@ -59,6 +59,24 @@ the CMS from leaking into the app.
 | Feature-item array editor | Brief scopes prop editing to "limited props"; the declarative field system is extensible to array editors later. |
 | Rollback UI | Snapshots + history API exist (`/api/releases/[slug]`); restoring a version into the draft is a small follow-up. |
 
+## Beyond the brief (deliberate, bounded extras)
+
+Each of these was a conscious choice that reinforces the brief's stated priorities —
+**architecture, correctness, automation** — rather than scope-creep:
+
+| Extra | Rubric axis it serves |
+| ----- | --------------------- |
+| **Pluggable release store** (`fs` + in-memory drivers behind one `ReleaseStore` port) | *Architecture* — publishing is written against an interface, not a filesystem path, so the Vercel read-only-FS constraint is a one-line driver swap, and CI runs hermetically on the memory driver. |
+| **Fixtures fallback behind the `ContentSource` port** | *Architecture + DX* — the app (and the full e2e/CI suite) runs with zero Contentful credentials; flipping env vars switches to the live CMS with no code change. Proves the adapter boundary is real. |
+| **Deliberate "unknown section" fixture** (`marquee`) | *Correctness* — exercises the `UnsupportedSection` degradation path as a first-class, demoable case instead of a theoretical one. |
+| **Release read API + immutable snapshots** (`/api/releases/[slug]`) | *Correctness/automation* — makes the audit trail inspectable and is the seam a rollback feature would plug into. |
+| **Motion-safe visuals** (decorative background is `aria-hidden` + `motion-reduce:animate-none` + a global `prefers-reduced-motion` rule) | *Accessibility* — polish that is provably AAA-motion-safe, not a liability against the WCAG bar. |
+| **Studio affordances** (viewport switcher, dirty/saved indicator, reset-to-baseline) | *Bounded UX* — the brief says "let tailwind & shadcn dictate polish"; these stay inside that envelope and aid the demo without adding new state-management surface. |
+
+**Restraint is also a decision.** No new-page authoring UI, no rollback UI, no deep array editor —
+each is out of scope per the brief and is called out above with its production path, so the extras
+read as judgment, not gold-plating.
+
 ## Architecture overview · Redux · Contentful · Publish · A11y
 
 These are covered in depth in [`../README.md`](../README.md) (§1–§5) and

@@ -47,7 +47,6 @@ export const heroPropsSchema = z
     // keeps the schema assignable to z.ZodType<Props>. The component defaults
     // to "center" at render time.
     align: z.enum(["left", "center"]).optional(),
-    imageUrl: z.string().url().optional(),
   })
   .strict();
 
