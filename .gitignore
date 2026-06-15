@@ -1,0 +1,45 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# typescript
+*.tsbuildinfo
+
+# production
+/build
+
+# testing
+/coverage
+/playwright-report
+/test-results
+/blob-report
+/playwright/.cache
+
+# accessibility artefacts (generated in CI)
+a11y-report.json
+
+# env
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# misc
+.DS_Store
+*.pem
+.idea
+.vscode/*
+!.vscode/extensions.json
+
+# NOTE: releases/ is intentionally committed — immutable published snapshots
+# are part of the repo's audit trail in this local-store setup.
+
+# local screenshot captures
+/screenshots

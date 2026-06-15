@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens. Contrast pairs are chosen for WCAG 2.2 AAA where practical:
+ * body foreground/background exceeds 7:1 in both themes (verified with the
+ * tokens below). Brand accents are reserved for large text / non-text UI where
+ * AAA requires 3:1, keeping the palette vivid without sacrificing legibility.
+ */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%; /* #0f172a-ish on white ≈ 16:1 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 245 58% 38%; /* deep indigo, AAA on white for large text + UI */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 245 30% 96%;
+    --secondary-foreground: 245 45% 24%;
+
+    --muted: 220 16% 95%;
+    --muted-foreground: 222 25% 32%; /* ≈ 8.5:1 on white */
+
+    --accent: 280 65% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 38%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 18% 86%;
+    --input: 220 18% 80%;
+    --ring: 245 58% 45%;
+
+    --brand-50: 245 80% 97%;
+    --brand-400: 252 83% 67%;
+    --brand-500: 245 75% 48%;
+    --brand-600: 245 72% 40%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 224 47% 7%;
+    --foreground: 210 40% 98%; /* near-white on near-black ≈ 17:1 */
+
+    --card: 224 40% 10%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 40% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 252 90% 76%; /* light indigo on dark, AAA for large/UI */
+    --primary-foreground: 224 47% 9%;
+
+    --secondary: 224 30% 16%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 224 28% 16%;
+    --muted-foreground: 218 20% 76%; /* ≈ 8:1 on dark bg */
+
+    --accent: 280 70% 72%;
+    --accent-foreground: 224 47% 9%;
+
+    --destructive: 0 70% 64%;
+    --destructive-foreground: 224 47% 9%;
+
+    --border: 224 22% 22%;
+    --input: 224 22% 26%;
+    --ring: 252 90% 76%;
+
+    --brand-50: 245 40% 14%;
+    --brand-400: 252 83% 72%;
+    --brand-500: 245 80% 66%;
+    --brand-600: 245 70% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  /* AAA: visible, high-contrast focus on every interactive element. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* AAA 2.4.13: focus indicator is never fully hidden. */
+  ::selection {
+    @apply bg-primary/20;
+  }
+}
+
+/* prefers-reduced-motion: kill non-essential motion (Brief §7). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip-link helper. */
+.skip-link {
+  @apply absolute left-4 top-4 z-50 -translate-y-20 rounded-md bg-primary px-4 py-2 text-primary-foreground transition-transform focus-visible:translate-y-0;
+}

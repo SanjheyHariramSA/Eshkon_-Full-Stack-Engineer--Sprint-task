@@ -1,0 +1,50 @@
+{
+  "slug": "pricing",
+  "version": "1.0.0",
+  "bump": "major",
+  "contentHash": "c6af1087",
+  "createdAt": "2026-06-15T10:03:00.332Z",
+  "page": {
+    "pageId": "fixture-pricing",
+    "slug": "pricing",
+    "title": "Page Studio — Pricing",
+    "sections": [
+      {
+        "id": "hero-pricing",
+        "type": "hero",
+        "props": {
+          "heading": "Simple, transparent pricing",
+          "subheading": "Start free. Upgrade when you grow.",
+          "align": "center"
+        }
+      },
+      {
+        "id": "testimonial-f4B07k",
+        "type": "testimonial",
+        "props": {
+          "quote": "This product transformed how our team ships.",
+          "author": "Alex Rivera",
+          "role": "Head of Product",
+          "company": "Acme Inc."
+        }
+      },
+      {
+        "id": "cta-pricing",
+        "type": "cta",
+        "props": {
+          "heading": "Talk to sales",
+          "label": "Contact us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "changelog": [
+    {
+      "kind": "initial-release",
+      "severity": "major",
+      "detail": "Initial release"
+    }
+  ],
+  "publishedBy": "publisher@example.com"
+}

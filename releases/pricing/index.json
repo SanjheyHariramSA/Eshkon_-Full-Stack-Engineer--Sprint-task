@@ -1,0 +1,14 @@
+{
+  "slug": "pricing",
+  "latest": "1.0.0",
+  "releases": [
+    {
+      "version": "1.0.0",
+      "createdAt": "2026-06-15T10:03:00.332Z",
+      "bump": "major",
+      "contentHash": "c6af1087",
+      "publishedBy": "publisher@example.com",
+      "summary": "1 major"
+    }
+  ]
+}
