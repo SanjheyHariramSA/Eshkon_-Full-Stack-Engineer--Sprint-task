@@ -27,6 +27,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      # Match the lockfile's package-manager version (Node 22 bundles npm 10,
+      # but the lockfile is maintained with npm 11). Keeps `npm ci` in sync.
+      - run: npm i -g npm@11
       - run: npm ci
       - name: Lint
         run: npm run lint
@@ -46,6 +49,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - run: npm i -g npm@11
       - run: npm ci
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium

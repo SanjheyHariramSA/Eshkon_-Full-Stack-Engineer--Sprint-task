@@ -1,0 +1,73 @@
+{
+  "slug": "pricing",
+  "version": "2.0.0",
+  "bump": "major",
+  "contentHash": "ee60778b",
+  "createdAt": "2026-06-15T11:49:00.342Z",
+  "page": {
+    "pageId": "fixture-pricing",
+    "slug": "pricing",
+    "title": "Page Studio — Pricing",
+    "sections": [
+      {
+        "id": "hero-pricing",
+        "type": "hero",
+        "props": {
+          "heading": "Simple, transparent pricing",
+          "subheading": "Start free. Upgrade when you grow.",
+          "align": "center"
+        }
+      },
+      {
+        "id": "featureGrid-NCbHjE",
+        "type": "featureGrid",
+        "props": {
+          "heading": "Everything you need",
+          "subheading": "Powerful features, thoughtfully designed.",
+          "columns": 3,
+          "features": [
+            {
+              "title": "Fast",
+              "description": "Blazing performance out of the box.",
+              "icon": "Zap"
+            },
+            {
+              "title": "Secure",
+              "description": "Enterprise-grade security by default.",
+              "icon": "Shield"
+            },
+            {
+              "title": "Accessible",
+              "description": "WCAG-oriented from the start.",
+              "icon": "Accessibility"
+            }
+          ]
+        }
+      },
+      {
+        "id": "cta-pricing",
+        "type": "cta",
+        "props": {
+          "heading": "Talk to sales",
+          "label": "Contact us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "changelog": [
+    {
+      "kind": "section-removed",
+      "severity": "major",
+      "sectionId": "testimonial-f4B07k",
+      "detail": "Section \"testimonial-f4B07k\" (testimonial) removed"
+    },
+    {
+      "kind": "section-added",
+      "severity": "minor",
+      "sectionId": "featureGrid-NCbHjE",
+      "detail": "Section \"featureGrid-NCbHjE\" (featureGrid) added"
+    }
+  ],
+  "publishedBy": "publisher@example.com"
+}
