@@ -55,7 +55,7 @@ export default async function PreviewPage({
     <>
       <SiteHeader />
       {isPreview ? <PreviewModeBanner slug={slug} /> : null}
-      <main id="main-content">
+      <main id="main-content" className="device-frame">
         <h1 className="sr-only">{result.page.title}</h1>
         <PageRenderer page={result.page} />
       </main>

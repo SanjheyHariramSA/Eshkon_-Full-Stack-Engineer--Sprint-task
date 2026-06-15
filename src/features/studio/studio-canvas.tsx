@@ -26,11 +26,11 @@ export function StudioCanvas() {
   return (
     <section
       aria-label="Live preview"
-      className="overflow-y-auto bg-[radial-gradient(ellipse_100%_60%_at_50%_0%,hsl(var(--muted)),hsl(var(--muted)/0.3))] p-4 md:p-8"
+      className="order-3 overflow-y-auto bg-[radial-gradient(ellipse_100%_60%_at_50%_0%,hsl(var(--muted)),hsl(var(--muted)/0.3))] p-4 md:p-8 lg:order-2"
     >
       <div
         className={cn(
-          "mx-auto overflow-hidden rounded-xl border bg-background shadow-lg transition-[max-width] duration-300 motion-reduce:transition-none",
+          "device-frame mx-auto overflow-hidden rounded-xl border bg-background shadow-lg transition-[max-width] duration-300 motion-reduce:transition-none",
           FRAME_WIDTH[viewport] ?? FRAME_WIDTH.desktop,
         )}
       >

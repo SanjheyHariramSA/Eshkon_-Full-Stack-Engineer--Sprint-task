@@ -1,14 +1,7 @@
 import * as Icons from "lucide-react";
 import { Sparkles, type LucideIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import type { FeatureGridProps } from "@/core/schema";
-
-const COLS: Record<number, string> = {
-  2: "md:grid-cols-2",
-  3: "md:grid-cols-2 lg:grid-cols-3",
-  4: "sm:grid-cols-2 lg:grid-cols-4",
-};
 
 function resolveIcon(name?: string): LucideIcon {
   if (!name) return Sparkles;
@@ -31,10 +24,7 @@ export function FeatureGridSection({ props }: { props: FeatureGridProps }) {
           </div>
         )}
 
-        <ul
-          role="list"
-          className={cn("grid grid-cols-1 gap-6", COLS[props.columns ?? 3] ?? COLS[3])}
-        >
+        <ul role="list" className="feature-grid" data-cols={props.columns ?? 3}>
           {props.features.map((feature, i) => {
             const Icon = resolveIcon(feature.icon);
             return (

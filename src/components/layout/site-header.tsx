@@ -5,6 +5,7 @@ import { logoutAction } from "@/server/actions/auth-actions";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
+import { MobileNav } from "./mobile-nav";
 
 /**
  * Global header. Server component — reads the session and reflects the user's
@@ -15,22 +16,23 @@ export async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between gap-4">
+      <div className="container flex h-16 items-center justify-between gap-2 sm:gap-4">
         <Link
           href="/"
           className="flex items-center gap-2 rounded-md font-semibold tracking-tight focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         >
-          <span className="inline-flex size-8 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-sm">
+          <span className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-brand-gradient text-white shadow-sm">
             <LayoutPanelLeft className="size-5" aria-hidden />
           </span>
-          Page Studio
+          <span className="hidden min-[375px]:inline">Page Studio</span>
         </Link>
 
         <nav aria-label="Primary" className="flex items-center gap-1 sm:gap-2">
-          <Button asChild variant="ghost" size="sm">
+          <MobileNav />
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link href="/preview/home">Preview</Link>
           </Button>
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link href="/studio/home">Studio</Link>
           </Button>
           <ThemeToggle />

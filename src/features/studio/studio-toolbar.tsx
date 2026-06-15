@@ -32,35 +32,35 @@ export function StudioToolbar({
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
-      <div className="flex h-16 items-center gap-3 px-4">
-        <Button asChild variant="ghost" size="sm">
+      <div className="flex h-16 items-center gap-2 px-3 sm:gap-3 sm:px-4">
+        <Button asChild variant="ghost" size="sm" className="shrink-0">
           <Link href="/">
             <ArrowLeft aria-hidden />
             <span className="sr-only sm:not-sr-only">Exit</span>
           </Link>
         </Button>
 
-        <Separator orientation="vertical" className="h-6" />
+        <Separator orientation="vertical" className="hidden h-6 sm:block" />
 
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold">{page?.title ?? "Untitled"}</p>
-          <p className="text-xs text-muted-foreground">
+          <p className="truncate text-xs text-muted-foreground">
             /{page?.slug}
             {latestVersion ? ` · published v${latestVersion}` : " · never published"}
           </p>
         </div>
 
         {isDirty ? (
-          <Badge variant="minor" aria-live="polite">
+          <Badge variant="minor" aria-live="polite" className="hidden shrink-0 min-[420px]:inline-flex">
             Unsaved changes
           </Badge>
         ) : (
-          <Badge variant="outline" aria-live="polite">
+          <Badge variant="outline" aria-live="polite" className="hidden shrink-0 min-[420px]:inline-flex">
             Saved
           </Badge>
         )}
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-2">
           {/* Viewport switcher */}
           <div
             role="group"

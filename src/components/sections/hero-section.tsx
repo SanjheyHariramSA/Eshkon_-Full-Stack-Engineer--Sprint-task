@@ -24,7 +24,7 @@ export function HeroSection({ props }: { props: HeroProps }) {
       />
       <div
         className={cn(
-          "container relative flex flex-col gap-6 py-24 md:py-32",
+          "container relative flex flex-col gap-6 py-[clamp(4rem,11cqi,8rem)]",
           align === "center" ? "items-center text-center" : "items-start text-left",
         )}
       >
@@ -34,14 +34,14 @@ export function HeroSection({ props }: { props: HeroProps }) {
           </span>
         ) : null}
 
-        <h2 className="max-w-4xl text-balance text-4xl font-bold tracking-tight md:text-6xl">
+        <h2 className="max-w-4xl text-balance text-[clamp(2.25rem,7cqi,3.75rem)] font-bold leading-[1.08] tracking-tight">
           {props.heading}
         </h2>
 
         {props.subheading ? (
           <p
             className={cn(
-              "max-w-2xl text-pretty text-lg text-muted-foreground md:text-xl",
+              "max-w-2xl text-pretty text-[clamp(1.0625rem,2.6cqi,1.25rem)] text-muted-foreground",
               align === "center" && "mx-auto",
             )}
           >

@@ -60,7 +60,7 @@ export function SectionListPanel() {
   };
 
   return (
-    <aside aria-label="Page sections" className="flex flex-col border-r bg-muted/20">
+    <aside aria-label="Page sections" className="order-1 flex flex-col border-r bg-muted/20">
       <div className="flex items-center justify-between border-b p-4">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
           Sections

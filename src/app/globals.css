@@ -118,3 +118,57 @@
 .skip-link {
   @apply absolute left-4 top-4 z-50 -translate-y-20 rounded-md bg-primary px-4 py-2 text-primary-foreground transition-transform focus-visible:translate-y-0;
 }
+
+/* ── Container-driven responsive layout ──────────────────────────────────────
+   Rendered pages respond to the *frame* width, not the browser window. The
+   /preview <main> and the Studio canvas frame are marked `.device-frame`, so
+   the Studio's viewport switcher (which constrains the frame width) reflects
+   real device layout instead of the desktop window. On /preview the frame is
+   full-width, so this also yields correct layout on real phones/tablets. */
+.device-frame {
+  container: device / inline-size;
+}
+
+.feature-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@container device (min-width: 560px) {
+  .feature-grid[data-cols="4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container device (min-width: 672px) {
+  .feature-grid[data-cols="2"],
+  .feature-grid[data-cols="3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container device (min-width: 1024px) {
+  .feature-grid[data-cols="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .feature-grid[data-cols="4"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Fallback for when no container ancestor exists (defensive): a wide viewport
+   still gets multiple columns so the grid is never stuck single-column. */
+@supports not (container-type: inline-size) {
+  @media (min-width: 768px) {
+    .feature-grid[data-cols="2"],
+    .feature-grid[data-cols="3"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .feature-grid[data-cols="3"] {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .feature-grid[data-cols="4"] {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

@@ -26,7 +26,7 @@ export function SectionInspector() {
     return (
       <aside
         aria-label="Section properties"
-        className="hidden flex-col items-center justify-center gap-3 border-l bg-muted/20 p-8 text-center text-muted-foreground lg:flex"
+        className="order-2 hidden flex-col items-center justify-center gap-3 border-l bg-muted/20 p-8 text-center text-muted-foreground lg:order-3 lg:flex"
       >
         <SlidersHorizontal className="size-8" aria-hidden />
         <p className="text-sm">Select a section to edit its properties.</p>
@@ -38,7 +38,7 @@ export function SectionInspector() {
   if (!def) return null;
 
   return (
-    <aside aria-label="Section properties" className="flex flex-col border-l bg-muted/20">
+    <aside aria-label="Section properties" className="order-2 flex flex-col border-l bg-muted/20 lg:order-3">
       <div className="border-b p-4">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
           {def.label} properties
