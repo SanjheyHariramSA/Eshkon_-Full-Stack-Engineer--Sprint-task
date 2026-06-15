@@ -39,10 +39,32 @@ describe("SemVer diff (Brief §5)", () => {
     expect(result.changes[0]?.kind).toBe("prop-changed");
   });
 
-  it("optional prop added → MINOR", () => {
+  it("optional prop added (new key) → MINOR", () => {
     const before = page([hero("a", "Hello")]);
     const after = page([hero("a", "Hello", { subheading: "New sub" })]);
     expect(diffPages(before, after).bump).toBe("minor");
+  });
+
+  it("filling a previously-empty prop value → PATCH (text/prop change)", () => {
+    const before = page([hero("a", "Hello", { subheading: "" })]);
+    const after = page([hero("a", "Hello", { subheading: "Now set" })]);
+    const result = diffPages(before, after);
+    expect(result.bump).toBe("patch");
+    expect(result.changes[0]?.kind).toBe("prop-changed");
+  });
+
+  it("clearing an optional prop value → PATCH", () => {
+    const before = page([hero("a", "Hello", { subheading: "set" })]);
+    const after = page([hero("a", "Hello", { subheading: "" })]);
+    expect(diffPages(before, after).bump).toBe("patch");
+  });
+
+  it("emptying a required prop value (key present) → MAJOR", () => {
+    const before = page([hero("a", "Hello")]);
+    const after = page([hero("a", "")]);
+    const result = diffPages(before, after);
+    expect(result.bump).toBe("major");
+    expect(result.changes.some((c) => c.kind === "required-prop-broken")).toBe(true);
   });
 
   it("section added → MINOR", () => {

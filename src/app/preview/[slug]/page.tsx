@@ -9,9 +9,16 @@ import { PreviewModeBanner } from "@/components/layout/preview-mode-banner";
 type Params = Promise<{ slug: string }>;
 type Search = Promise<{ preview?: string }>;
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Params;
+  searchParams: Search;
+}): Promise<Metadata> {
   const { slug } = await params;
-  const raw = await getContentSource().getPage(slug);
+  const { preview } = await searchParams;
+  const raw = await getContentSource().getPage(slug, { preview: preview === "true" });
   return { title: raw?.title ?? "Preview" };
 }
 

@@ -167,24 +167,11 @@ function diffProps(
   const keys = dedupe([...Object.keys(before), ...Object.keys(after)]);
 
   for (const key of keys) {
-    const had = hasValue(before[key]);
-    const has = hasValue(after[key]);
+    const inBefore = key in before;
+    const inAfter = key in after;
 
-    if (had && !has) {
-      changes.push({
-        kind: required.has(key) ? "required-prop-broken" : "prop-changed",
-        severity: required.has(key) ? "major" : "patch",
-        sectionId,
-        prop: key,
-        detail: required.has(key)
-          ? `Required prop "${key}" removed from "${sectionId}"`
-          : `Optional prop "${key}" cleared on "${sectionId}"`,
-      });
-      continue;
-    }
-    if (!had && has) {
-      // A new value for a previously-absent prop. If it is a required prop being
-      // filled in, that is still additive (it was broken/absent before).
+    // A genuinely new prop key — additive (Brief: "add optional prop" → MINOR).
+    if (!inBefore && inAfter) {
       changes.push({
         kind: "optional-prop-added",
         severity: "minor",
@@ -194,13 +181,36 @@ function diffProps(
       });
       continue;
     }
-    if (had && has && !deepEqual(before[key], after[key])) {
+
+    // A prop key removed entirely: breaking iff it was required.
+    if (inBefore && !inAfter) {
+      const breaking = required.has(key);
       changes.push({
-        kind: "prop-changed",
-        severity: "patch",
+        kind: breaking ? "required-prop-broken" : "prop-changed",
+        severity: breaking ? "major" : "patch",
         sectionId,
         prop: key,
-        detail: `Prop "${key}" changed on "${sectionId}"`,
+        detail: breaking
+          ? `Required prop "${key}" removed from "${sectionId}"`
+          : `Optional prop "${key}" removed from "${sectionId}"`,
+      });
+      continue;
+    }
+
+    // Present in both — a value edit. Emptying a required prop is breaking
+    // (Brief: "break required prop" → MAJOR); everything else is a plain
+    // text/prop change (Brief: "text/prop change" → PATCH), including filling
+    // a previously-empty field.
+    if (inBefore && inAfter && !deepEqual(before[key], after[key])) {
+      const broke = required.has(key) && hasValue(before[key]) && !hasValue(after[key]);
+      changes.push({
+        kind: broke ? "required-prop-broken" : "prop-changed",
+        severity: broke ? "major" : "patch",
+        sectionId,
+        prop: key,
+        detail: broke
+          ? `Required prop "${key}" broken on "${sectionId}"`
+          : `Prop "${key}" changed on "${sectionId}"`,
       });
     }
   }
